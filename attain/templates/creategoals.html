@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 font-weight-bold">Create a new goal</legend>
+      <p>Complete the following questions based on one thing that you want to become, do and have one year from now.</p>
+      <br>
+      <div class="form-group">
+        {{ form.title.label(class="form-control-label font-weight-bold") }}
+        <img id="displayImage" border="0" src="icons/next1.png" style="visibility:hidden" />
+        {% if form.title.errors %}
+        {{ form.title(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.title.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.title(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+      <div class="form-group" data-toggle="tooltip" data-placement="right" title="Why will you be successful in becoming, doing, or having this?">
+        {{ form.content.label(class="form-control-label font-weight-bold") }}
+        {% if form.content.errors %}
+        {{ form.content(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.content.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.content(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 font-weight-bold">Goal Breakdown</legend>
+      <p>Complete the following fields to break your goal into more manageable pieces.</p>
+      <br>
+      <div class="form-group">
+        {{ form.measure_success.label(class="form-control-label font-weight-bold") }}
+        {% if form.measure_success.errors %}
+        {{ form.measure_success(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.measure_success.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.measure_success(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.six_month.label(class="form-control-label font-weight-bold") }}
+        {% if form.six_month.errors %}
+        {{ form.six_month(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.six_month.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.six_month(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.three_month.label(class="form-control-label font-weight-bold") }}
+        {% if form.three_month.errors %}
+        {{ form.three_month(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.three_month.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.three_month(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.one_month.label(class="form-control-label font-weight-bold") }}
+        {% if form.one_month.errors %}
+        {{ form.one_month(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.one_month.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.one_month(class="form-control form-control-md") }}
+        {% endif %}
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-info") }}
+    </div>
+  </form>
+  {% endblock content %}

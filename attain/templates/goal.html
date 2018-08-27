@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        {% if goal.author == current_user %}
+        <h2 class="goal-title">{{ goal.title }}</h2>
+          <div class="goal-metadata smaller-spacing">
+            <p><small class="text-muted">Created: <i>{{ goal.date_created.strftime('%m-%d-%Y') }}</i></p></small>
+            {% if goal.started == true %}
+            <p><small class="text-muted">Started: <i>{{ goal.start_date.strftime('%m-%d-%Y') }}</i></p></small>
+            {% endif %}
+            {% if goal.completed == true %}
+            <p><small class="text-muted">Completed: <i>{{ goal.completed_date.strftime('%m-%d-%Y') }}</i></p></small>
+            {% endif %}
+          </div>
+        <hr>
+        <div class="goal-write-up">Your why:</div>
+        <p class="goal-content">{{ goal.content }}</p>
+        <hr>
+        <div class="goal-write-up">Measure of Success:</div>
+        <p>{{ goal.measure_success }}</p>
+        <hr>
+        <div class="goal-write-up">Six month target:</div>
+        <p>{{ goal.six_month }}</p>
+        <hr>
+        <div class="goal-write-up">Three month target:</div>
+        <p>{{ goal.three_month }}</p>
+        <hr>
+        <div class="goal-write-up">One month target:</div>
+        <p>{{ goal.one_month }}</p>
+        <hr>
+        <div class="goal-write-up">Notes:</div>
+        <p>{{ goal.notes }}</p>
+        <div>
+        {% if goal.completed != true %}
+          <button type="button" class="btn btn-danger btn-sm m-1 float-right" data-toggle="modal" data-target="#deleteGoal">Delete</button>
+        {% endif %}
+          <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('update_goal', goal_id=goal.id) }}">Update</a>
+        {% if goal.started == false %}
+          <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('start_goal', goal_id=goal.id) }}">Start</a>
+        {% else %}
+          <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('complete_a_goal', goal_id=goal.id) }}">Complete</a>
+        {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Pop-up for delete -->
+<div class="modal fade" id="deleteGoal" tabindex="-1" role="dialog" aria-labelledby="deleteGoalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteGoalLabel">Delete Goal?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this goal?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        <form action="{{ url_for('delete_goal', goal_id=goal.id) }}" method="POST">
+          <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

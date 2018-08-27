@@ -1,0 +1,91 @@
+body {
+  background: #05204A;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+.heading-4-color {
+  color: #05204A
+}
+
+.first-and-last-name {
+  font-size: 2.5rem;
+  color: #000000;
+}
+
+.hello-user-home-page {
+  color: #000000;
+}
+
+.motto-color {
+  color: #02020A;
+}
+
+.navigationbar {
+  background-color: #02020A;
+}
+
+.jumbotron-color {
+  background-color: #E1E2EF;
+}
+
+.main-header .navbar-nav .nav-link {
+  color: #BFACAA;
+}
+
+.main-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.main-header .navbar-item .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #E1E2EF;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.goal-title, .extra-links, .account-needed {
+  color: #02020A;
+}
+
+.smaller-spacing {
+  line-height: .25em;
+}
+
+a.goal-title:hover {
+  color: #BFACAA;
+  text-decoration: none;
+}
+
+a.extra-links:hover {
+  color: #BFACAA;
+  text-decoration: none;
+}
+
+.card-text {
+  white-space: pre-line;
+}
+
+.bbold {
+  color: #05204A;
+}
+
+.profile-image {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.goal-write-up {
+  font-weight: bold;
+}
+
+/* .color-grey {
+  background-color: #cee2e5
+} */

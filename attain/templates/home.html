@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-color">
+  <h1 class="display-4 hello-user-home-page">Hello, {{ current_user.firstname }} {{ current_user.lastname }}</h1>
+  <p class="lead">Welcome to Attain. You are able to create, track and complete goals that you wish to achieve.</p>
+  <div class="motto-color">
+    <h4 class="heading-4-color">"Here to help you attain your goals!"</h4>
+  </div>
+  <hr class="my-4">
+  <p>Get started achieving your goals today. Click <b>Create a goal</b> below!</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{{ url_for('creategoal') }}" role="button">Create a goal</a>
+  </p>
+</div>
+{% endblock content %}

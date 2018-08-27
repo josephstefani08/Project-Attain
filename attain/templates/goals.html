@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+  <a class="btn btn-primary" href="{{ url_for('creategoal') }}" role="button">Create new goal</a>
+</div>
+<br>
+<!-- This is not working -->
+{% if not goals.items %}
+<div class="alert alert-info" role="alert">
+  No goals created yet. Create one today!
+</div>
+{% endif %}
+<br>
+{% for goal in goals.items %}
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        {% if goal.started == false %}
+        <div class="goal-metadata">
+          <small class="text-muted">Date created: <i>{{ goal.date_created.strftime('%m-%d-%Y') }}</i></small>
+        </div>
+        {% else %}
+        <div class="goal-metadata">
+          <small class="text-muted">Date started: <i>{{ goal.start_date.strftime('%m-%d-%Y') }}</i></small>
+        </div>
+        {% endif %}
+        <h3 class="card-title"><a class="goal-title" href="{{ url_for('goal', goal_id=goal.id) }}">{{ goal.title }}</a></h3>
+        <p class="card-text">{{ goal.content }}</p>
+        {% if goal.started == false %}
+        <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('start_goal', goal_id=goal.id) }}">Start</a>
+        {% else %}
+        <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('complete_a_goal', goal_id=goal.id) }}">Complete</a>
+        {% endif %}
+        <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('update_goal', goal_id=goal.id) }}">Update</a>
+        <a class="btn btn-primary btn-sm m-1 float-right" href="{{ url_for('goal', goal_id=goal.id) }}">View</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% for page_num in goals.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if goals.page == page_num %}
+      <a class="btn btn-info mb-4" href="{{ url_for('goals', page=page_num)}}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-info mb-4" href="{{ url_for('goals', page=page_num)}}">{{ page_num }}</a>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% endblock content %}
